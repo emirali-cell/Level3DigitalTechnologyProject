@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BirdScript : MonoBehaviour
+public class EmuScript : MonoBehaviour
 {
-    public GameObject bird;
+    public GameObject emu;
     private Vector2 movement;
     private float xSpeed;
     [SerializeField] private Rigidbody2D rigidBody;
     // Start is called before the first frame update
     void Start()
     {
-        int randomInt = Random.Range(11, 27);
+        int randomInt = Random.Range(5, 20);
         xSpeed = randomInt;
     }
 
@@ -19,23 +19,13 @@ public class BirdScript : MonoBehaviour
     void Update()
     {
         movement.x = xSpeed * -1;
-        movement.y = 0;
+        movement.y = rigidBody.velocity.y;
         rigidBody.velocity = movement;
 
         if (transform.position.x <= -30)
         {
-            Destroy(bird);
+            Destroy(emu);
         }
 
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Platform")||
-            other.gameObject.CompareTag("Ground")||
-            other.gameObject.CompareTag("Enemy"))
-        {
-            Destroy(bird);
-        }
     }
 }
