@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Level 3 Digital Technology Project.sln"
+    "dotnet.defaultSolution": "Level3DigitalTechnologyProject.sln"
 }

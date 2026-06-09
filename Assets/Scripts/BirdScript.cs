@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BirdScript : MonoBehaviour
 {
+    public GameObject bird;
     private Vector2 movement;
     private float xSpeed;
     [SerializeField] private Rigidbody2D rigidBody;
@@ -20,5 +21,11 @@ public class BirdScript : MonoBehaviour
         movement.x = xSpeed * -1;
         movement.y = 0;
         rigidBody.velocity = movement;
+
+        if (transform.position.x <= -30)
+        {
+            Destroy(bird);
+        }
+
     }
 }
