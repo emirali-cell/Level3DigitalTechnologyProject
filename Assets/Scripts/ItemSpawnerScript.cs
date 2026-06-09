@@ -6,6 +6,7 @@ public class ItemSpawnerScript : MonoBehaviour
 {
     public GameObject doubleJumpItem;
     public List<GameObject> itemList;
+
     private Vector3 itemSpawnPoint;
     // Start is called before the first frame update
     void Start()

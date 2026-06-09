@@ -157,6 +157,18 @@ public class Player : MonoBehaviour
             playerSpeed = playerSpeed * 2;
             Destroy(other.gameObject);
         }
+
+        if (invincibilityValue >= 1f && 
+                 other.gameObject.CompareTag("Enemy"))
+        {
+            invincibilityValue -= 1f;
+            Debug.Log($"invincibility value = {invincibilityValue}");
+            Destroy(other.gameObject);
+        }
+        else if(other.gameObject.CompareTag("Enemy"))
+        {
+            LoseLife();
+        }
     }
 
     private void Jump()
