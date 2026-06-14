@@ -6,11 +6,11 @@ using UnityEngine;
 
 public class CrocodileScript : MonoBehaviour
 {
-    public int rotatorValue = -1;
+    public GameObject crocodile;
     private float timer = 0f;
     public Rigidbody2D rigidBody;
     private UnityEngine.Vector2 movement;
-    public float targetAngle = 90f;
+    public float targetAngle;
     float r;
     // Start is called before the first frame update
     void Start()
@@ -25,14 +25,29 @@ public class CrocodileScript : MonoBehaviour
 
         movement.y = timer * 2;
 
-        if (timer >= 4)
+        if (transform.position.y >= -13.7)
         {
             movement.y = 0 * rigidBody.velocity.y;
 
-            float Angle = Mathf.SmoothDampAngle(transform.eulerAngles.z, targetAngle, ref r, 0.5f);
+            
+            Quaternion targetRotation = Quaternion.AngleAxis(targetAngle, transform.forward);
+            
+            float rotationSpeed = 1f;
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
-            transform.rotation = Quaternion.Euler(0,0, Angle);
+
         }
+
+        if (timer >= 10)
+        {
+            movement.y = -1;
+
+            Quaternion newTargetRotation = Quaternion.AngleAxis((targetAngle - targetAngle), transform.forward);
+            float rotationSpeed = 3f;
+            transform.rotation = Quaternion.Lerp(transform.rotation, newTargetRotation, rotationSpeed * Time.deltaTime);
+        }
+
+        
 
         rigidBody.velocity = movement;
     }
