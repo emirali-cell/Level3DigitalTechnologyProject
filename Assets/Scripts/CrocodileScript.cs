@@ -38,13 +38,18 @@ public class CrocodileScript : MonoBehaviour
 
         }
 
-        if (timer >= 10)
+        if (timer >= 5)
         {
-            movement.y = -1;
+            movement.y = -1.5f;
 
             Quaternion newTargetRotation = Quaternion.AngleAxis((targetAngle - targetAngle), transform.forward);
             float rotationSpeed = 3f;
             transform.rotation = Quaternion.Lerp(transform.rotation, newTargetRotation, rotationSpeed * Time.deltaTime);
+        }
+
+        if (timer >= 10 && transform.position.y <= -13)
+        {
+            Destroy(transform.parent.gameObject);
         }
 
         

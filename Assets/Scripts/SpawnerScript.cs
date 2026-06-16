@@ -10,20 +10,24 @@ public class SpawnerScript : MonoBehaviour
     public GameObject kangarooPrefab;
     public GameObject birdPrefab;
     public GameObject emuPrefab;
+    public GameObject crocodilePrefab;
     [SerializeField] private float timer = 0f;
     [SerializeField] private float spiderTimer = 0f;
     [SerializeField] private float kangarooTimer = 0f;
     [SerializeField] private float birdTimer = 0f;
     [SerializeField] private float emuTimer = 0f;
+    [SerializeField] private float crocodileTimer = 0f;
     private UnityEngine.Vector3 spiderSpawnPoint;
     private UnityEngine.Vector3 kangarooSpawnPoint;
     private UnityEngine.Vector3 birdSpawnPoint;
     private UnityEngine.Vector3 emuSpawnPoint;
+    private UnityEngine.Vector3 crocodileSpawnPoint;
     [SerializeField] private float waveNumber = 1f;
     [SerializeField] private double spiderSpawnTime;
     [SerializeField] private double kangarooSpawnTime;
     [SerializeField] private double birdSpawnTime;
     [SerializeField] private double emuSpawnTime;
+    [SerializeField] private double crocodileSpawnTime;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +42,8 @@ public class SpawnerScript : MonoBehaviour
         
         emuSpawnPoint = new UnityEngine.Vector3(30f, -12f, 0f);
         emuSpawnTime = 2;
+
+        crocodileSpawnTime = 2;
     }
 
     // Update is called once per frame
@@ -48,9 +54,10 @@ public class SpawnerScript : MonoBehaviour
         kangarooTimer += Time.deltaTime;
         birdTimer += Time.deltaTime;
         emuTimer += Time.deltaTime;
+        crocodileTimer += Time.deltaTime;
         
         
-        if (spiderTimer >= spiderSpawnTime  && waveNumber == 1||
+        if (spiderTimer >= spiderSpawnTime  && waveNumber == 3||
             spiderTimer >= spiderSpawnTime && waveNumber > 2)
         {
             spiderTimer = 0f;
@@ -81,6 +88,15 @@ public class SpawnerScript : MonoBehaviour
             emuTimer = 0f;
             EmuSpawn();
         }
+
+        if (crocodileTimer >= crocodileSpawnTime && waveNumber == 1)
+        {
+           crocodileTimer = 0f;
+           int randomCrocodileX = UnityEngine.Random.Range(-25, 29);
+           crocodileSpawnPoint = new UnityEngine.Vector3(randomCrocodileX, -23, 0);
+           CrocodileSpawn();
+        }
+
 
         if (timer >= 45f)
         {
@@ -134,6 +150,17 @@ public class SpawnerScript : MonoBehaviour
         {
            
             Instantiate(emuPrefab, emuSpawnPoint, UnityEngine.Quaternion.identity);
+        }
+    }
+
+    private void CrocodileSpawn()
+    {
+        int randomInt = UnityEngine.Random.Range(0, 3);
+            
+        if (randomInt == 1)
+        {
+           
+         Instantiate(crocodilePrefab, crocodileSpawnPoint, UnityEngine.Quaternion.identity);
         }
     }
 }
