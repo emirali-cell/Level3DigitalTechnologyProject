@@ -25,7 +25,9 @@ public class FishScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Ground"))
+        if (other.gameObject.CompareTag("Ground")||
+            other.gameObject.CompareTag("Enemy")||
+            other.gameObject.CompareTag("Platform"))
         {
             Destroy(fish);
         }
