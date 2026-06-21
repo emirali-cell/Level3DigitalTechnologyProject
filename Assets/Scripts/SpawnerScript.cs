@@ -64,16 +64,16 @@ public class SpawnerScript : MonoBehaviour
         fishTimer += Time.deltaTime;
         
         
-        if (spiderTimer >= spiderSpawnTime  && waveNumber == 2/*||
-            spiderTimer >= spiderSpawnTime && waveNumber > 2*/)
+        if (spiderTimer >= spiderSpawnTime  && waveNumber == 1||
+            spiderTimer >= spiderSpawnTime && waveNumber > 2)
         {
             spiderTimer = 0f;
             spiderSpawn();
 
         }
 
-        if (kangarooTimer >= kangarooSpawnTime && waveNumber == 2/*||
-            kangarooTimer >= kangarooSpawnTime && waveNumber > 2*/)
+        if (kangarooTimer >= kangarooSpawnTime && waveNumber == 2||
+            kangarooTimer >= kangarooSpawnTime && waveNumber > 2)
         {
             kangarooTimer = 0f;
             KangarooSpawn();
@@ -96,7 +96,7 @@ public class SpawnerScript : MonoBehaviour
             EmuSpawn();
         }
 
-        if (crocodileTimer >= crocodileSpawnTime && waveNumber == 5)
+        if (crocodileTimer >= crocodileSpawnTime && waveNumber >= 1)
         {
            crocodileTimer = 0f;
            int randomCrocodileX = UnityEngine.Random.Range(-25, 29);
@@ -104,7 +104,7 @@ public class SpawnerScript : MonoBehaviour
            CrocodileSpawn();
         }
 
-        if (fishTimer >= fishSpawnTime && waveNumber == 1)
+        if (fishTimer >= fishSpawnTime && waveNumber >= 7)
         {
             fishTimer = 0f;
             float randomFishX = UnityEngine.Random.Range(8.5f,49f);

@@ -102,13 +102,16 @@ public class Player : MonoBehaviour
 
         
         if (invincibilityValue >= 1f && 
-                 other.gameObject.CompareTag("Enemy"))
+                 other.gameObject.CompareTag("Enemy")||
+            invincibilityValue >= 1f && 
+                 other.gameObject.CompareTag("Crocodile Enemy"))
         {
             invincibilityValue -= 1f;
             Debug.Log($"invincibility value = {invincibilityValue}");
             Destroy(other.gameObject);
         }
-        else if(other.gameObject.CompareTag("Enemy"))
+        else if(other.gameObject.CompareTag("Enemy") || 
+                other.gameObject.CompareTag("Crocodile Enemy"))
         {
             LoseLife();
         }

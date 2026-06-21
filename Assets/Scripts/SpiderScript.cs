@@ -12,12 +12,13 @@ public class SpiderScript : MonoBehaviour
     [SerializeField] private float speed = 3f;
     private UnityEngine.Vector2 movement;
     private UnityEngine.Vector3 originalPosition;
-    
+    private GameObject crocodile;
     // Start is called before the first frame update
     private void Start()
     {
         originalPosition = transform.position;
-       
+        crocodile = GameObject.FindGameObjectWithTag("Crocodile Enemy");     
+        Physics2D.IgnoreCollision(crocodile.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         
 
     }
@@ -38,6 +39,12 @@ public class SpiderScript : MonoBehaviour
 
         
         
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+
+
     }
 
 }
