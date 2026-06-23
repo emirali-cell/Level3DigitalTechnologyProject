@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7145045402267876419}
   - component: {fileID: 3404146486173934876}
   - component: {fileID: 6207315153608112733}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Emu
   m_TagString: Enemy
   m_Icon: {fileID: 0}

@@ -17,8 +17,7 @@ public class SpiderScript : MonoBehaviour
     private void Start()
     {
         originalPosition = transform.position;
-        crocodile = GameObject.FindGameObjectWithTag("Crocodile Enemy");     
-        Physics2D.IgnoreCollision(crocodile.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        
         
 
     }
@@ -43,7 +42,7 @@ public class SpiderScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-
+       
 
     }
 
