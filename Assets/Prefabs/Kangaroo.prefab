@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8127902994586073864}
   - component: {fileID: 4624432128582207031}
   - component: {fileID: 1779583996218706066}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Kangaroo
   m_TagString: Enemy
   m_Icon: {fileID: 0}

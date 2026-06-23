@@ -32,6 +32,9 @@ public class SpawnerScript : MonoBehaviour
     [SerializeField] private double emuSpawnTime;
     [SerializeField] private double crocodileSpawnTime;
     [SerializeField] private double fishSpawnTime;
+    private List<System.Action> functionList;
+    public Action chosenFunction;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -50,12 +53,24 @@ public class SpawnerScript : MonoBehaviour
         crocodileSpawnTime = 2;
 
         fishSpawnTime = 2;
+
+        List<Action> functionList = new List<Action>
+        {
+            spiderSpawn, 
+            KangarooSpawn, 
+            BirdSpawn, 
+            EmuSpawn, 
+            CrocodileSpawn,
+            FishSpawn
+        };
+
+        StartCoroutine(ExecuteEveryTwoSeconds());
     }
 
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
+        /*timer += Time.deltaTime;
         spiderTimer += Time.deltaTime;
         kangarooTimer += Time.deltaTime;
         birdTimer += Time.deltaTime;
@@ -90,7 +105,7 @@ public class SpawnerScript : MonoBehaviour
             
         }
 
-        if (emuTimer >= emuSpawnTime && waveNumber == 4)
+        if (emuTimer >= emuSpawnTime && waveNumber == 2)
         {
             emuTimer = 0f;
             EmuSpawn();
@@ -118,6 +133,19 @@ public class SpawnerScript : MonoBehaviour
             waveNumber += 1f;
             timer = 0f;
             Debug.Log($"Wave {waveNumber}");
+        }*/
+
+        timer += Time.deltaTime;
+        
+
+
+        if (timer >= 2)
+        {
+            timer = 0f;
+           
+
+            
+
         }
     }
 
@@ -189,4 +217,17 @@ public class SpawnerScript : MonoBehaviour
          Instantiate(fishPrefab, fishSpawnPoint, specificRotation);
         }
     }
+
+    IEnumerator ExecuteEveryTwoSeconds()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(2f);
+            
+            int index = UnityEngine.Random.Range(0, functionList.Count);
+            functionList[index]();
+        }
+    }
+
+    
 }

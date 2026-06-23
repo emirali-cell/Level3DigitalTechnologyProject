@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         platformSpawnPoint = new Vector3(transform.position.x, 
-        transform.position.y + 4.9f, 0);
+        transform.position.y + 5.5f, 0);
 
         float horizontalInput = Input.GetAxisRaw("Horizontal");
 
