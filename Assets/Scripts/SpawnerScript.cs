@@ -32,7 +32,9 @@ public class SpawnerScript : MonoBehaviour
     [SerializeField] private double emuSpawnTime;
     [SerializeField] private double crocodileSpawnTime;
     [SerializeField] private double fishSpawnTime;
-    private List<System.Action> functionList;
+    //private List<Action> functionList;
+    List<Action> functionList = new List<Action>();
+    private System.Random random;
     public Action chosenFunction;
     
     // Start is called before the first frame update
@@ -54,17 +56,27 @@ public class SpawnerScript : MonoBehaviour
 
         fishSpawnTime = 2;
 
-        List<Action> functionList = new List<Action>
+        //random = new System.Random();
+
+        /*List<Action> functionList = new List<Action>
         {
-            spiderSpawn, 
+            SpiderSpawn, 
             KangarooSpawn, 
             BirdSpawn, 
             EmuSpawn, 
             CrocodileSpawn,
             FishSpawn
-        };
+        };*/
 
-        StartCoroutine(ExecuteEveryTwoSeconds());
+        //StartCoroutine(ExecuteEveryTwoSeconds());
+
+        functionList.Add(SpiderSpawn);
+        functionList.Add(KangarooSpawn);
+        functionList.Add(BirdSpawn);
+        functionList.Add(EmuSpawn);
+        functionList.Add(CrocodileSpawn);
+        functionList.Add(FishSpawn);
+        
     }
 
     // Update is called once per frame
@@ -143,18 +155,19 @@ public class SpawnerScript : MonoBehaviour
         {
             timer = 0f;
            
+            GetRandomMethod().Invoke();
 
             
 
         }
     }
 
-    private void spiderSpawn()
+    private void SpiderSpawn()
     {
         
-        int randomInt = UnityEngine.Random.Range(0, 2);
+        int randomInt = UnityEngine.Random.Range(0, 1);
         
-        if (randomInt == 1)
+        if (randomInt == 0)
         {
             
             Instantiate(spiderPrefab, spiderSpawnPoint, UnityEngine.Quaternion.identity);
@@ -163,9 +176,9 @@ public class SpawnerScript : MonoBehaviour
 
     private void KangarooSpawn()
     {
-        int randomInt = UnityEngine.Random.Range(0, 3);
+        int randomInt = UnityEngine.Random.Range(0, 1);
         
-        if (randomInt == 1)
+        if (randomInt == 0)
         {
            
             Instantiate(kangarooPrefab, kangarooSpawnPoint, UnityEngine.Quaternion.identity);
@@ -174,11 +187,11 @@ public class SpawnerScript : MonoBehaviour
 
     private void BirdSpawn()
     {
-        int randomInt = UnityEngine.Random.Range(0, 4);
+        int randomInt = UnityEngine.Random.Range(0, 1);
 
         
         
-        if (randomInt == 1)
+        if (randomInt == 0)
         {
            
             Instantiate(birdPrefab, birdSpawnPoint, UnityEngine.Quaternion.identity);
@@ -187,9 +200,9 @@ public class SpawnerScript : MonoBehaviour
 
     private void EmuSpawn()
     {
-        int randomInt = UnityEngine.Random.Range(0,3);
+        int randomInt = UnityEngine.Random.Range(0,1);
 
-        if (randomInt == 1)
+        if (randomInt == 0)
         {
            
             Instantiate(emuPrefab, emuSpawnPoint, UnityEngine.Quaternion.identity);
@@ -198,9 +211,9 @@ public class SpawnerScript : MonoBehaviour
 
     private void CrocodileSpawn()
     {
-        int randomInt = UnityEngine.Random.Range(0, 3);
+        int randomInt = UnityEngine.Random.Range(0, 1);
             
-        if (randomInt == 1)
+        if (randomInt == 0)
         {
            
          Instantiate(crocodilePrefab, crocodileSpawnPoint, UnityEngine.Quaternion.identity);
@@ -210,23 +223,29 @@ public class SpawnerScript : MonoBehaviour
     private void FishSpawn()
     {
         UnityEngine.Quaternion specificRotation = UnityEngine.Quaternion.Euler(0f, 0f, 45f);
-        int randomInt = UnityEngine.Random.Range(0,3);
+        int randomInt = UnityEngine.Random.Range(0,1);
 
-        if (randomInt == 1)
+        if (randomInt == 0)
         {
          Instantiate(fishPrefab, fishSpawnPoint, specificRotation);
         }
     }
 
-    IEnumerator ExecuteEveryTwoSeconds()
+   /* IEnumerator ExecuteEveryTwoSeconds()
     {
         while (true)
         {
             yield return new WaitForSeconds(2f);
             
-            int index = UnityEngine.Random.Range(0, functionList.Count);
+            int index = random.Next(0, functionList.Count);
             functionList[index]();
         }
+    }*/
+
+    public Action GetRandomMethod()
+    {
+        Debug.Log("Try to spawn");
+        return functionList[UnityEngine.Random.Range(0, functionList.Count)];
     }
 
     
