@@ -19,6 +19,7 @@ public class SpawnerScript : MonoBehaviour
     [SerializeField] private float emuTimer = 0f;
     [SerializeField] private float crocodileTimer = 0f;
     [SerializeField] private float fishTimer = 0f;
+    [SerializeField] private float spawnTimer = 0f;
     private UnityEngine.Vector3 spiderSpawnPoint;
     private UnityEngine.Vector3 kangarooSpawnPoint;
     private UnityEngine.Vector3 birdSpawnPoint;
@@ -71,11 +72,7 @@ public class SpawnerScript : MonoBehaviour
         //StartCoroutine(ExecuteEveryTwoSeconds());
 
         functionList.Add(SpiderSpawn);
-        functionList.Add(KangarooSpawn);
-        functionList.Add(BirdSpawn);
-        functionList.Add(EmuSpawn);
-        functionList.Add(CrocodileSpawn);
-        functionList.Add(FishSpawn);
+       
         
     }
 
@@ -148,24 +145,33 @@ public class SpawnerScript : MonoBehaviour
         }*/
 
         timer += Time.deltaTime;
+        spawnTimer += Time.deltaTime;
         
 
 
-        if (timer >= 2)
+        if (spawnTimer >= 2)
         {
-            timer = 0f;
+            spawnTimer = 0f;
            
             GetRandomMethod().Invoke();
 
-            
-
         }
+
+        if (timer >= 60f)
+        {
+            waveNumber += 1f;
+            timer = 0f;
+            Debug.Log($"Wave {waveNumber}");
+            AddEnemyToFunctionList();
+        }
+
+        
     }
 
     private void SpiderSpawn()
     {
         
-        int randomInt = UnityEngine.Random.Range(0, 1);
+        int randomInt = UnityEngine.Random.Range(0, 2);
         
         if (randomInt == 0)
         {
@@ -176,7 +182,7 @@ public class SpawnerScript : MonoBehaviour
 
     private void KangarooSpawn()
     {
-        int randomInt = UnityEngine.Random.Range(0, 1);
+        int randomInt = UnityEngine.Random.Range(0, 3);
         
         if (randomInt == 0)
         {
@@ -193,6 +199,8 @@ public class SpawnerScript : MonoBehaviour
         
         if (randomInt == 0)
         {
+            int randomBirdY = UnityEngine.Random.Range(-7, 14);
+            birdSpawnPoint = new UnityEngine.Vector3(35f, randomBirdY, 0);
            
             Instantiate(birdPrefab, birdSpawnPoint, UnityEngine.Quaternion.identity);
         }
@@ -200,7 +208,7 @@ public class SpawnerScript : MonoBehaviour
 
     private void EmuSpawn()
     {
-        int randomInt = UnityEngine.Random.Range(0,1);
+        int randomInt = UnityEngine.Random.Range(0,2);
 
         if (randomInt == 0)
         {
@@ -211,11 +219,13 @@ public class SpawnerScript : MonoBehaviour
 
     private void CrocodileSpawn()
     {
-        int randomInt = UnityEngine.Random.Range(0, 1);
+        int randomInt = UnityEngine.Random.Range(0, 3);
             
         if (randomInt == 0)
         {
-           
+         int randomCrocodileX = UnityEngine.Random.Range(-25, 29);
+         crocodileSpawnPoint = new UnityEngine.Vector3(randomCrocodileX, -23, 0);
+
          Instantiate(crocodilePrefab, crocodileSpawnPoint, UnityEngine.Quaternion.identity);
         }
     }
@@ -223,29 +233,50 @@ public class SpawnerScript : MonoBehaviour
     private void FishSpawn()
     {
         UnityEngine.Quaternion specificRotation = UnityEngine.Quaternion.Euler(0f, 0f, 45f);
-        int randomInt = UnityEngine.Random.Range(0,1);
+        int randomInt = UnityEngine.Random.Range(0,2);
 
         if (randomInt == 0)
         {
+         float randomFishX = UnityEngine.Random.Range(8.5f,49f);
+         fishSpawnPoint = new UnityEngine.Vector3(randomFishX, 19,0);
          Instantiate(fishPrefab, fishSpawnPoint, specificRotation);
         }
     }
 
-   /* IEnumerator ExecuteEveryTwoSeconds()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(2f);
-            
-            int index = random.Next(0, functionList.Count);
-            functionList[index]();
-        }
-    }*/
-
     public Action GetRandomMethod()
     {
-        Debug.Log("Try to spawn");
+        
         return functionList[UnityEngine.Random.Range(0, functionList.Count)];
+    }
+
+    private void AddEnemyToFunctionList()
+    {
+        if (waveNumber == 2)
+        {
+         functionList.Add(KangarooSpawn);
+        }
+
+        if (waveNumber == 5)
+        {
+         functionList.Add(BirdSpawn);
+        }
+        
+        if (waveNumber == 4)
+        {
+         functionList.Add(EmuSpawn);
+        }
+
+        if (waveNumber == 3)
+        {
+         functionList.Add(CrocodileSpawn);
+        }
+
+        if (waveNumber == 6)
+        {
+         functionList.Add(FishSpawn);
+        }
+       
+      
     }
 
     

@@ -613,6 +613,7 @@ MonoBehaviour:
   emuTimer: 0
   crocodileTimer: 0
   fishTimer: 0
+  spawnTimer: 0
   waveNumber: 1
   spiderSpawnTime: 0
   kangarooSpawnTime: 0
@@ -1497,8 +1498,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6719810724864471908, guid: 0408b0a114519d04a81359f6fe89d9db, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6719810724864471908, guid: 0408b0a114519d04a81359f6fe89d9db, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6719810724864471908, guid: 0408b0a114519d04a81359f6fe89d9db, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6719810724864471908, guid: 0408b0a114519d04a81359f6fe89d9db, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -32.25
+      value: -31.89
       objectReference: {fileID: 0}
     - target: {fileID: 6719810724864471908, guid: 0408b0a114519d04a81359f6fe89d9db, type: 3}
       propertyPath: m_LocalPosition.y
