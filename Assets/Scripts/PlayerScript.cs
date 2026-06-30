@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         platformSpawnPoint = new Vector3(transform.position.x, 
-        transform.position.y + 5.5f, 0);
+        transform.position.y + 5.6f, 0);
 
         float horizontalInput = Input.GetAxisRaw("Horizontal");
 
@@ -84,6 +84,7 @@ public class Player : MonoBehaviour
             hasSpeedItem = false;
             Debug.Log("has speed item" + false);
             playerSpeed = playerSpeed/2;
+            speedItemTimer = 0f;
         }
         }
         

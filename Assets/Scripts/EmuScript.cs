@@ -11,7 +11,7 @@ public class EmuScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        int randomInt = Random.Range(5, 20);
+        int randomInt = Random.Range(12, 22);
         xSpeed = randomInt;
     }
 

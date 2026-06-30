@@ -8,6 +8,8 @@ public class ItemSpawnerScript : MonoBehaviour
     public List<GameObject> itemList;
 
     private Vector3 itemSpawnPoint;
+    private float spawnTimer = 0f;
+    public float itemSpawnTime = 45f;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +19,9 @@ public class ItemSpawnerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        spawnTimer += Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.C) || spawnTimer >= itemSpawnTime)
         {
             int randomItem = Random.Range(0, 4);
 
@@ -26,6 +30,8 @@ public class ItemSpawnerScript : MonoBehaviour
             itemSpawnPoint = new Vector3(randomX, randomY, 0);
 
             Instantiate(itemList[randomItem], itemSpawnPoint, Quaternion.identity);
+
+            spawnTimer = 0f;
         }
     }
 }

@@ -33,10 +33,13 @@ public class SpawnerScript : MonoBehaviour
     [SerializeField] private double emuSpawnTime;
     [SerializeField] private double crocodileSpawnTime;
     [SerializeField] private double fishSpawnTime;
+    [SerializeField] private double spawnTime;
     //private List<Action> functionList;
     List<Action> functionList = new List<Action>();
     private System.Random random;
     public Action chosenFunction;
+    private int waveProbabilityInt;
+
     
     // Start is called before the first frame update
     void Start()
@@ -72,7 +75,8 @@ public class SpawnerScript : MonoBehaviour
         //StartCoroutine(ExecuteEveryTwoSeconds());
 
         functionList.Add(SpiderSpawn);
-       
+        waveProbabilityInt = 0;
+        spawnTime = 2;
         
     }
 
@@ -149,7 +153,7 @@ public class SpawnerScript : MonoBehaviour
         
 
 
-        if (spawnTimer >= 2)
+        if (spawnTimer >= spawnTime)
         {
             spawnTimer = 0f;
            
@@ -157,7 +161,7 @@ public class SpawnerScript : MonoBehaviour
 
         }
 
-        if (timer >= 60f)
+        if (timer >= 45f)
         {
             waveNumber += 1f;
             timer = 0f;
@@ -182,7 +186,7 @@ public class SpawnerScript : MonoBehaviour
 
     private void KangarooSpawn()
     {
-        int randomInt = UnityEngine.Random.Range(0, 3);
+        int randomInt = UnityEngine.Random.Range(0, 3 - waveProbabilityInt);
         
         if (randomInt == 0)
         {
@@ -219,7 +223,7 @@ public class SpawnerScript : MonoBehaviour
 
     private void CrocodileSpawn()
     {
-        int randomInt = UnityEngine.Random.Range(0, 3);
+        int randomInt = UnityEngine.Random.Range(0, 3 - waveProbabilityInt);
             
         if (randomInt == 0)
         {
@@ -233,7 +237,7 @@ public class SpawnerScript : MonoBehaviour
     private void FishSpawn()
     {
         UnityEngine.Quaternion specificRotation = UnityEngine.Quaternion.Euler(0f, 0f, 45f);
-        int randomInt = UnityEngine.Random.Range(0,2);
+        int randomInt = UnityEngine.Random.Range(0,2 - waveProbabilityInt);
 
         if (randomInt == 0)
         {
@@ -255,10 +259,10 @@ public class SpawnerScript : MonoBehaviour
         {
          functionList.Add(KangarooSpawn);
         }
-
-        if (waveNumber == 5)
+        
+        if (waveNumber == 3 )
         {
-         functionList.Add(BirdSpawn);
+         functionList.Add(CrocodileSpawn);
         }
         
         if (waveNumber == 4)
@@ -266,15 +270,19 @@ public class SpawnerScript : MonoBehaviour
          functionList.Add(EmuSpawn);
         }
 
-        if (waveNumber == 3)
+        if (waveNumber == 5)
         {
-         functionList.Add(CrocodileSpawn);
+         functionList.Add(BirdSpawn);
+         waveProbabilityInt = 1;
+         spawnTime = 1.5;
         }
+        
 
         if (waveNumber == 6)
         {
          functionList.Add(FishSpawn);
         }
+
        
       
     }
