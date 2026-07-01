@@ -18,9 +18,9 @@ public class Player : MonoBehaviour
     private bool grounded;
     private Animator anim;
     public float playerLives = 3f;
-    [SerializeField] private float extraJump = 0f;
-    [SerializeField] private float invincibilityValue = 0f;
-    [SerializeField] private bool hasGroundItem;
+    public float extraJump = 0f;
+    public float invincibilityValue = 0f;
+    public bool hasGroundItem;
     public GameObject platformPrefab;
     private Vector3 platformSpawnPoint;
     private bool hasSpeedItem;
@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
                   && grounded == false)
         {
             
-            extraJump -= 1f;
+            extraJump = 0f;
             Jump();
             Debug.Log($"extrajump = {extraJump}");
         }
@@ -107,7 +107,7 @@ public class Player : MonoBehaviour
             invincibilityValue >= 1f && 
                  other.gameObject.CompareTag("Crocodile Enemy"))
         {
-            invincibilityValue -= 1f;
+            invincibilityValue = 0f;
             Debug.Log($"invincibility value = {invincibilityValue}");
             Destroy(other.gameObject);
         }
