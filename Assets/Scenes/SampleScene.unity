@@ -1849,11 +1849,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4610145459842899356, guid: a8d19de443b46c84a92a26152d62d873, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -33.2
+      value: -32.75
       objectReference: {fileID: 0}
     - target: {fileID: 4610145459842899356, guid: a8d19de443b46c84a92a26152d62d873, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.8
+      value: 2.17
       objectReference: {fileID: 0}
     - target: {fileID: 4610145459842899356, guid: a8d19de443b46c84a92a26152d62d873, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1886,10 +1886,6 @@ PrefabInstance:
     - target: {fileID: 4610145459842899356, guid: a8d19de443b46c84a92a26152d62d873, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6057571350739601967, guid: a8d19de443b46c84a92a26152d62d873, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1975,11 +1971,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5030318474307759615, guid: 8f5aef137d576a340ba61516ba8142ae, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -36.8
+      value: -37.68
       objectReference: {fileID: 0}
     - target: {fileID: 5030318474307759615, guid: 8f5aef137d576a340ba61516ba8142ae, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.2
+      value: 2.88
       objectReference: {fileID: 0}
     - target: {fileID: 5030318474307759615, guid: 8f5aef137d576a340ba61516ba8142ae, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2017,10 +2013,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Double Jump Item
       objectReference: {fileID: 0}
-    - target: {fileID: 6846645219726096519, guid: 8f5aef137d576a340ba61516ba8142ae, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2038,17 +2030,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Speed Item
       objectReference: {fileID: 0}
-    - target: {fileID: 1373817018818121972, guid: 1662926d02320a945852f57ddc78f901, type: 3}
-      propertyPath: m_TagString
-      value: Speed Item
-      objectReference: {fileID: 0}
     - target: {fileID: 4634161233807225531, guid: 1662926d02320a945852f57ddc78f901, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -37.8
+      value: -37.56
       objectReference: {fileID: 0}
     - target: {fileID: 4634161233807225531, guid: 1662926d02320a945852f57ddc78f901, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.7
+      value: 4.93
       objectReference: {fileID: 0}
     - target: {fileID: 4634161233807225531, guid: 1662926d02320a945852f57ddc78f901, type: 3}
       propertyPath: m_LocalPosition.z
